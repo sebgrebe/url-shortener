@@ -1,9 +1,10 @@
 var express = require('express')
 var app = express()
 var mongo = require('mongodb').MongoClient
+var uri = 'mongodb://heroku_hj043f9f:jjqeethl1t8cnn3smfao50kaai@ds119675.mlab.com:19675/heroku_hj043f9f'
 var assert = require('assert')
-var db_url = 'mongodb://localhost:27017/url-shortener'
-
+var local_db = 'mongodb://localhost:27017/url-shortener'
+var db_url = uri || local_db
 const port = process.env.PORT || 4000;
 
 console.log('App running on Port 4000')
@@ -21,7 +22,7 @@ app.use(express.static('app'))
 //handle new urls to shorten
 app.get('/new/*',(req,res) => {
 
-  mongo.connect(db_url, (err, db) => {
+  mongo.connect(uri, (err, db) => {
   	var host = req.get('host')
   	var url = req.url.substr(5,req.url.length-1)
   	var collection = db.collection('documents');
