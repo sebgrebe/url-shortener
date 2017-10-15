@@ -33,7 +33,7 @@ app.get('/new/*',(req,res) => {
   			(err,data) => {
   				res.send({
   					url: obj['url'],
-  					shortened: host+'/'+obj['shortened']
+  					shortened: 'https://'+host+'/'+obj['shortened']
   				})
   			})
   		})
