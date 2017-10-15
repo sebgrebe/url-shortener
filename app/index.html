@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Request Header Parser Microservice</title>
+	<title>URL Shortener Microservice</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	
 	<!-- jQuery -->
@@ -26,17 +26,17 @@
 <div class="container">
 	<div class="title"><h1>URL Shortener Microservice</h1></div>
 	<div class="instructions">
-		<p>This app provides provides the user with a shortened version of a URL they have entered.</p>
+		<p>This app provides provides the user with a shortened version of a URL they type in.</p>
 		<p>Just type in /new/[URL YOU WANT TO SHORTEN] at the end of this page's URL, and you will receive a shortened URL.</p>
 	<h4>Example</h4>
 		<p>Input: 'https://url-shortener-sebgrebe.herokuapp.com/new/https://facebook.com'</p>
-	<p>Output: {"url":'https://facebook.com',"shortened":"https://url-shortener-sebgrebe.herokuapp.com/0"}</p>
+	<p>Output: {"original_url":'https://facebook.com',"shortened_url":"https://url-shortener-sebgrebe.herokuapp.com/0"}</p>
 	</div>
 <footer>
        <div class="col-md-6">Created by <a href="https://sebgrebe.github.io/">sebgrebe</a> with <a href="https://nodejs.org/en/"><img src="/img/nodejs_logo.png" height="20px" /></a>
        </div>
        <div class="col-md-6">
-              Source code on <a href="https://github.com/sebgrebe/header-parser" class="logo_link" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+              Source code on <a href="https://github.com/sebgrebe/url-shortener" class="logo_link" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
        </div>
 </footer>
 </div>

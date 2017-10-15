@@ -17,7 +17,7 @@ app.use(express.static('app'))
 // 		mongo.connect(db_url, (err, db) => {
 //   	var collection = db.collection('documents');
 //   	collection.remove()
-//   	console.log("deleted")
+//   	res.send("deleted")
 //   })
 // })
 
@@ -34,8 +34,8 @@ app.get('/new/*',(req,res) => {
 	  		collection.insert(obj,
 	  			(err,data) => {
 	  				res.send({
-	  					url: obj['url'],
-	  					shortened: 'https://'+host+'/'+obj['shortened']
+	  					original_url: obj['url'],
+	  					shortened_url: 'https://'+host+'/'+obj['shortened']
 	  				})
 	  			})
 	  		})
