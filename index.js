@@ -45,7 +45,7 @@ app.get('/new/*',(req,res) => {
 
 //link to shortened urls
 app.get('/*',(req,res) => {
-  mongo.connect(db_url, (err, db) => {
+  mongo.connect(uri, (err, db) => {
   	var shortened = req.url.substr(1,req.url.length-1)
   	shortened = parseInt(shortened)
   	var collection = db.collection('documents');
