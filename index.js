@@ -1,8 +1,10 @@
 var express = require('express')
-var app = express()
 var mongo = require('mongodb').MongoClient
-var uri = 'mongodb://heroku_hj043f9f:jjqeethl1t8cnn3smfao50kaai@ds119675.mlab.com:19675/heroku_hj043f9f'
+var isURL = require('is-url')
 var assert = require('assert')
+var app = express()
+var uri = 'mongodb://heroku_hj043f9f:jjqeethl1t8cnn3smfao50kaai@ds119675.mlab.com:19675/heroku_hj043f9f'
+
 var local_db = 'mongodb://localhost:27017/url-shortener'
 var db_url = uri || local_db
 const port = process.env.PORT || 4000;
@@ -21,25 +23,31 @@ app.use(express.static('app'))
 
 //handle new urls to shorten
 app.get('/new/*',(req,res) => {
-
   mongo.connect(uri, (err, db) => {
-  	var host = req.get('host')
   	var url = req.url.substr(5,req.url.length-1)
-  	var collection = db.collection('documents');
-  	collection.count()
-  	.then(count => {
-  		var obj = {shortened: count,url: url}
-  		collection.insert(obj,
-  			(err,data) => {
-  				res.send({
-  					url: obj['url'],
-  					shortened: 'https://'+host+'/'+obj['shortened']
-  				})
-  			})
-  		})
-  	.then(() => {
-  		db.close()
-  	})
+  	if (isURL(url)) {
+  		var host = req.get('host')
+	  	var collection = db.collection('documents');
+	  	collection.count()
+	  	.then(count => {
+	  		var obj = {shortened: count,url: url}
+	  		collection.insert(obj,
+	  			(err,data) => {
+	  				res.send({
+	  					url: obj['url'],
+	  					shortened: 'https://'+host+'/'+obj['shortened']
+	  				})
+	  			})
+	  		})
+	  	.then(() => {
+	  		db.close()
+	  	})
+  	}
+  	else {
+  		res.send({
+  			'error': 'The string you typed in does not seem to have a valid URL format'
+  		})	
+	  }
   });
 })
 

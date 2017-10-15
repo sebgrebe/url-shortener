@@ -24,10 +24,13 @@
 </head>
 <body>
 <div class="container">
-	<div class="title"><h1>Request Header Parser Microservice</h1></div>
+	<div class="title"><h1>URL Shortener Microservice</h1></div>
 	<div class="instructions">
-		<p>This app provides the user with their IP address, their preferred Browser language and their Operating System.</p>
-		<p>Just type in 'whoami' at the end of the URL (or click <a href="https://header-parser-sebgrebe.herokuapp.com/whoami">here</a>), and you will get this information.</p>
+		<p>This app provides provides the user with a shortened version of a URL they have entered.</p>
+		<p>Just type in /new/[URL YOU WANT TO SHORTEN] at the end of this page's URL, and you will receive a shortened URL.</p>
+	<h4>Example</h4>
+		<p>Input: 'https://url-shortener-sebgrebe.herokuapp.com/new/https://facebook.com'</p>
+	<p>Output: {"url":'https://facebook.com',"shortened":"https://url-shortener-sebgrebe.herokuapp.com/0"}</p>
 	</div>
 <footer>
        <div class="col-md-6">Created by <a href="https://sebgrebe.github.io/">sebgrebe</a> with <a href="https://nodejs.org/en/"><img src="/img/nodejs_logo.png" height="20px" /></a>
